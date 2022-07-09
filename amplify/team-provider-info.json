@@ -10,6 +10,12 @@
       "StackName": "amplify-yellowpagesbling-dev-91035",
       "StackId": "arn:aws:cloudformation:us-east-1:572419856844:stack/amplify-yellowpagesbling-dev-91035/2499f8d0-ff80-11ec-9d24-121de0c39d3f",
       "AmplifyAppId": "d268askmx46p4q"
+    },
+    "categories": {
+      "auth": {
+        "yellowpagesblingbb40b7d9": {},
+        "true": {}
+      }
     }
   }
 }
