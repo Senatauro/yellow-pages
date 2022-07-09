@@ -1,4 +1,5 @@
 .yellow-page{
+    width: 100%;
     padding: 24px;
 }
 
@@ -20,6 +21,12 @@
     justify-content: center;
     gap: 24px;
     margin-bottom: 24px;
+}
+
+.yellow-page-search-label{
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 16px;
 }
 
 .yellow-page-search-input{
@@ -73,5 +80,9 @@
     .yellow-page-search{
         flex-direction: column;
         gap: 16px;
+    }
+
+    .yellow-page-results{
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     }
 }

@@ -1,4 +1,4 @@
-import { API, graphqlOperation } from "aws-amplify";
+import { API } from "aws-amplify";
 import * as queries from "../graphql/queries";
 
 const ERROR_MESSAGES = {
@@ -31,7 +31,7 @@ function parseSearchInfo(searchInfo) {
   console.timeEnd("search");
 
   return {
-    name: name ? name[0].trim() : "",
+    name: name ? name[0].trim().toLocaleLowerCase() : "",
     age: age ? age[0].trim() : "",
     phone: phone ? phone[0].trim() : "",
   };
@@ -42,18 +42,17 @@ async function defaultSearch() {
     query: queries.listUserInformations,
     variables: { limit: 30 },
   });
-  console.log(result);
   return result.data.listUserInformations.items;
 }
 
 async function filteredSearch(name, age, phone) {
     const filter = {};
-    if (name != "") {
+    if (name !== "") {
         filter.name = {
             contains: name,
         };
     }
-    if (age != "") {
+    if (age !== "") {
         // Convert the age years to epoch time and them to a date time
         const closestYear = new Date(
             new Date().getTime() - age * 365 * 24 * 60 * 60 * 1000
@@ -65,7 +64,7 @@ async function filteredSearch(name, age, phone) {
             between: [farYear, closestYear],
         };
     }
-    if (phone != "") {
+    if (phone !== "") {
         filter.phone = {
             contains: phone,
         };
@@ -84,12 +83,5 @@ async function filteredSearch(name, age, phone) {
     return contacts;
 }
 
-function UrlExists(url) {
-  var http = new XMLHttpRequest();
-  http.open("HEAD", url, false);
-  http.send();
-  if (http.status != 404) return true;
-  else return false;
-}
 
-export { parseSearchInfo, defaultSearch, filteredSearch, UrlExists };
+export { parseSearchInfo, defaultSearch, filteredSearch };

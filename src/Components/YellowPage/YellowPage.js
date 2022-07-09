@@ -69,17 +69,18 @@ export default function YellowPage() {
                 <h1 >Yellow Page</h1>
                 <h4 >Find what you're looking for</h4>
             </div>
-            <div className="yellow-page-search">
-                <p>You're looking for who?</p>
-                <input type="text" placeholder="Search..." className="yellow-page-search-input" onInput={inputHandler} />
-            </div>
+            <form className="yellow-page-search">
+                <label> <span className='yellow-page-search-label'>You're looking for who?</span>
+                    <input type="text" placeholder="Search..." className="yellow-page-search-input" onInput={inputHandler} />
+                </label>
+            </form>
             
             <div className="yellow-page-results">
                 {
                     error ? <p className='yellow-page-results-error'>No results, please review your search or try a different one</p> :
                         loading ? <p className='yellow-page-results-loading'>Loading...</p> :
                             contacts.length > 0 ? contactsToRender :
-                                <p className='yellow-page-results-empty'>No results , please review your search or try a different one</p>
+                                <p className='yellow-page-results-empty'>No results,<br /> please review your search or try a different one</p>
                 }
             </div>
         </div>

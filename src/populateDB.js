@@ -17,7 +17,7 @@ export default async function populateDB() {
     for (let i = 0; i < contacts.length; i++){
         // Create the userInformation with the contact data
         const userInformation = {
-            name: contacts[i].name,
+            name: contacts[i].name.toLocaleLowerCase(),
             address: contacts[i].address,
             phone: contacts[i].phone_number.replace(/\D/g, ''),
             birthday: contacts[i].birthday.replace(" ", ""),

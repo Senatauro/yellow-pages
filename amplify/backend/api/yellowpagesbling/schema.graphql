@@ -4,7 +4,7 @@ input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONL
 
 type UserInformation @model(subscriptions: null) @auth(
     rules:[
-        {allow: public} # ,operations: [read] ADD THIS AFTER POPULATING THE DATABASE
+        {allow: public} # ,operations: [read] MUST ADD THIS TO ALLOW UNAUTH USERS TO ONLY READ.
         {allow: owner}
     ]
 )
