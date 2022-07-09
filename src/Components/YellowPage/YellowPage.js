@@ -66,8 +66,8 @@ export default function YellowPage() {
     return (
         <div className="yellow-page">
             <div className="yellow-page-title">
-                <h1 >Yellow Page</h1>
-                <h4 >Find what you're looking for</h4>
+                <h1>The Yellow Page</h1>
+                <h4>Find what you're looking</h4>
             </div>
             <form className="yellow-page-search">
                 <label> <span className='yellow-page-search-label'>You're looking for who?</span>
@@ -77,10 +77,10 @@ export default function YellowPage() {
             
             <div className="yellow-page-results">
                 {
-                    error ? <p className='yellow-page-results-error'>No results, please review your search or try a different one</p> :
+                    error ? <p className='yellow-page-results-error'><span className='yellow-page-results-accent'>No results...</span><br/>Please review your search or try a different one</p> :
                         loading ? <p className='yellow-page-results-loading'>Loading...</p> :
                             contacts.length > 0 ? contactsToRender :
-                                <p className='yellow-page-results-empty'>No results,<br /> please review your search or try a different one</p>
+                                <p className='yellow-page-results-empty'><span className='yellow-page-results-accent'>No results...</span><br/>Please review your search or try a different one</p>
                 }
             </div>
         </div>

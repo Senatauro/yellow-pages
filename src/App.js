@@ -1,4 +1,3 @@
-import './App.css';
 import YellowPage from './Components/YellowPage/YellowPage';
 
 function App() {
