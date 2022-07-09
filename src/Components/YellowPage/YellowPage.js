@@ -18,7 +18,13 @@ export default function YellowPage() {
 
     useEffect(() => {
         if (searchInfo.name || searchInfo.phone || searchInfo.age) {
-            filteredSearch(searchInfo.name, searchInfo.age, searchInfo.phone);
+            filteredSearch(searchInfo.name, searchInfo.age, searchInfo.phone).then(searchResult => {
+                setContacts(searchResult);
+                setLoading(false);
+            }).catch(error => {
+                setError(true);
+                setLoading(false);
+            })
         }
         else{
             defaultSearch().then(searchResult => {
@@ -28,7 +34,7 @@ export default function YellowPage() {
                 setLoading(false);
             }).catch(error => {
                 console.log(error)
-                setError(error);
+                setError(true);
                 setLoading(false);
             })
         }
@@ -59,20 +65,22 @@ export default function YellowPage() {
 
     return (
         <div className="yellow-page">
-            <h1 className="yellow-page-title">Yellow Page</h1>
-            <h4 className="yellow-page-subtitle">Find what you're looking for</h4>
+            <div className="yellow-page-title">
+                <h1 >Yellow Page</h1>
+                <h4 >Find what you're looking for</h4>
+            </div>
             <div className="yellow-page-search">
                 <p>You're looking for who?</p>
                 <input type="text" placeholder="Search..." className="yellow-page-search-input" onInput={inputHandler} />
             </div>
+            
             <div className="yellow-page-results">
                 {
-                    error ? <p>Error</p> :
-                        loading ? <p>Loading...</p> :
+                    error ? <p className='yellow-page-results-error'>No results, please review your search or try a different one</p> :
+                        loading ? <p className='yellow-page-results-loading'>Loading...</p> :
                             contacts.length > 0 ? contactsToRender :
-                                <p>No results</p>
+                                <p className='yellow-page-results-empty'>No results , please review your search or try a different one</p>
                 }
-                
             </div>
         </div>
     )

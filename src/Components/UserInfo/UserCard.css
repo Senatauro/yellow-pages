@@ -1,7 +1,7 @@
 .user-card{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 24px;
     background-color: #fff;
     border-radius: 5px;
@@ -13,9 +13,8 @@
 
 .user-card-picture{
     width: 100px;
+    height: 100px;
     border-radius: 50%;
-    background-color: #eee;
-    overflow: hidden;
     object-fit: cover;
 }
 
