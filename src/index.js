@@ -4,6 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { Amplify } from 'aws-amplify';
+import awsconfig from './aws-exports';
+
+// TO POPULATE THE DB
+import populateDB from './populateDB';
+
+Amplify.configure(awsconfig);
+populateDB()
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
