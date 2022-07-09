@@ -16,8 +16,11 @@ export default function YellowPage() {
     const [error, setError] = useState(false);
     const [searchTimeoutHandler, setSearchTimeoutHandler] = useState(-1);
 
+    // For the first time the user open the webapp and
+    // Every time the searchInfo changes, we want to update the contacts list
     useEffect(() => {
         setLoading(true);
+        // If there is at least a single parameter in the searchInfo, we want to search for the user
         if (searchInfo.name || searchInfo.phone || searchInfo.age) {
             filteredSearch(searchInfo.name, searchInfo.age, searchInfo.phone).then(searchResult => {
                 setContacts(searchResult);
@@ -26,11 +29,9 @@ export default function YellowPage() {
                 setError(true);
                 setLoading(false);
             })
-        }
+        } // If there is no parameter in the searchInfo, we want to get all the users
         else{
             defaultSearch().then(searchResult => {
-                //console.log("Search object: " + JSON.stringify(searchInfo))
-                //console.log(searchInfo)
                 setContacts(searchResult);
                 setLoading(false);
             }).catch(error => {
@@ -44,6 +45,8 @@ export default function YellowPage() {
     // Handle the user input and set a 1 second timeout before searching for the contacts and set the loading state to true
     function inputHandler(event) {
         clearTimeout(searchTimeoutHandler);
+
+        // At each keystroke, set the SearchTimeoutHandler to a new timeout handler
         setSearchTimeoutHandler(
             setTimeout(() => {
                 const input = event.target.value;

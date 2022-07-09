@@ -6,14 +6,16 @@ import "./UserCard.css"
 export default function UserCard(props) {
     const [image, setImage] = useState("")
     const [randomColor, setRandomColor] = useState(Math.floor(Math.random() * 16777215).toString(16))
+
+    // The first time this component is rendered, we want to get the user's image
     useEffect(() => {
-        // if the user has a profile picture, get it on the S3 storage
+        // If the user has a profile picture, get it on the S3 storage
         if (props.profilePicture) {
             Storage.get(props.profilePicture.key, {
                 level: "public",
             }).then(result => {
 
-                // when the S3 returns the image, check if is a valid url
+                // When the S3 returns the image, check if is a valid url
                 fetch(result).then(response => {
 
                     // if the url is valid, set the image

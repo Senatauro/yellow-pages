@@ -6,15 +6,15 @@ const ERROR_MESSAGES = {
 };
 
 function parseSearchInfo(searchInfo) {
-  //ADD FILTER TO CHECK SPECIAL CHARACTERS
 
+  // This RegEx will see if there's any special character in the searchInfo. Throw an error if there is
   const hasSpecialChar = searchInfo.match(/[^a-zA-Z0-9 ]/g);
   console.log(hasSpecialChar);
   if (hasSpecialChar) {
     throw ERROR_MESSAGES.ERROR_PARSE[0];
   }
 
-  console.time("search");
+  //console.time("search");
   // This RegEx will get the name
   const name = searchInfo.match(/[a-zA-Z ]+/g);
 
@@ -28,7 +28,7 @@ function parseSearchInfo(searchInfo) {
     /((\([0-9]{3}\)|[0-9]{3})\s?(([0-9]{1,3}-[0-9]{1,5})|([0-9]{1,7}))?)/g
   );
 
-  console.timeEnd("search");
+  //console.timeEnd("search");
 
   return {
     name: name ? name[0].trim().toLocaleLowerCase() : "",
@@ -37,6 +37,7 @@ function parseSearchInfo(searchInfo) {
   };
 }
 
+// The default search will get the first 30 users and return them
 async function defaultSearch() {
   const result = await API.graphql({
     query: queries.listUserInformations,
@@ -45,6 +46,7 @@ async function defaultSearch() {
   return result.data.listUserInformations.items;
 }
 
+// The filtered search will get the users that match the searchInfo and return them
 async function filteredSearch(name, age, phone) {
     const filter = {};
     if (name !== "") {
@@ -71,7 +73,8 @@ async function filteredSearch(name, age, phone) {
     }
 
     let nextToken = null
-    const contacts = []
+  const contacts = []
+  // While there is a nextToken, we want to get the next page of users
     do {
         const result = await API.graphql({
             query: queries.listUserInformations,
