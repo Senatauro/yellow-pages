@@ -80,3 +80,8 @@ After this the contact cards will have the images.
 ## Author
 
 - GitHub - [@Senatauro](https://github.com/Senatauro)
+
+
+## Atributes
+
+- <a href="https://www.flaticon.com/free-icons/menu" title="menu icons">Menu icons created by Freepik - Flaticon</a>
