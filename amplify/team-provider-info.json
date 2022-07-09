@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-yellowpagesbling-dev-91035-authRole",
+      "UnauthRoleArn": "arn:aws:iam::572419856844:role/amplify-yellowpagesbling-dev-91035-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::572419856844:role/amplify-yellowpagesbling-dev-91035-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-yellowpagesbling-dev-91035-deployment",
+      "UnauthRoleName": "amplify-yellowpagesbling-dev-91035-unauthRole",
+      "StackName": "amplify-yellowpagesbling-dev-91035",
+      "StackId": "arn:aws:cloudformation:us-east-1:572419856844:stack/amplify-yellowpagesbling-dev-91035/2499f8d0-ff80-11ec-9d24-121de0c39d3f",
+      "AmplifyAppId": "d268askmx46p4q"
+    }
+  }
+}
