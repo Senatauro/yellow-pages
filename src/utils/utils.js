@@ -9,7 +9,6 @@ function parseSearchInfo(searchInfo) {
 
   // This RegEx will see if there's any special character in the searchInfo. Throw an error if there is
   const hasSpecialChar = searchInfo.match(/[^a-zA-Z0-9 ]/g);
-  console.log(hasSpecialChar);
   if (hasSpecialChar) {
     throw ERROR_MESSAGES.ERROR_PARSE[0];
   }

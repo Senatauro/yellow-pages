@@ -6,11 +6,13 @@ import contacts from './contacts.json';
 export default async function populateDB() {
     // First check if the DB is empty with a list query
     const contactsDB = await API.graphql(graphqlOperation(listUserInformations))
-    console.log(contactsDB.data.listUserInformations.items.length);
+
     // If the DB is not empty, do nothing
     if (contactsDB.data.listUserInformations.items.length !== 0)
+    {
+        console.log("DB is not empty, do nothing");
         return
-    
+    }
     // If the DB is empty, populate it with the contacts.json file
     console.log('Populating DB...')
 
