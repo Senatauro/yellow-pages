@@ -84,4 +84,4 @@ After this the contact cards will have the images.
 
 ## Atributes
 
-- <a href="https://www.flaticon.com/free-icons/menu" title="menu icons">Menu icons created by Freepik - Flaticon</a>
+- <a href="https://www.flaticon.com/free-icons/menu" title="menu icons">Menu icons created by Freepik - Flaticon - Used as logo</a>
