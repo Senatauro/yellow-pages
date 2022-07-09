@@ -17,6 +17,7 @@ export default function YellowPage() {
     const [searchTimeoutHandler, setSearchTimeoutHandler] = useState(-1);
 
     useEffect(() => {
+        setLoading(true);
         if (searchInfo.name || searchInfo.phone || searchInfo.age) {
             filteredSearch(searchInfo.name, searchInfo.age, searchInfo.phone).then(searchResult => {
                 setContacts(searchResult);

@@ -36,7 +36,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [Add live site URL here](https://62c38bbffd520d644a6195a5--earnest-manatee-356450.netlify.app/)
+- Live Site URL: [Add live site URL here](https://master.d268askmx46p4q.amplifyapp.com/)
 
 ### How to run
 
@@ -49,9 +49,32 @@ npm install -g aws-amplify-cli
 Then you need to create a new project.
 
 ```bash
-amplify init --app <This Github Repository>
+amplify init --app https://github.com/Senatauro/yellow-pages
 ```
 
+This will ask your for your AWS Amplify credentials. If you already have a profile choose it and continue.
+If you don't have a profile, you must create one on the AWS Console.
+
+After creating the profile and using it to login the Amplify CLI will download the project and create the cloud resources for the project to run. This process will take a while...
+
+After the cloud resources are created, you can run the project.
+
+```bash
+npm start
+```
+
+For the first time running the project, it will populate the database with some data used in the exercise.
+Wait some 15 seconds and refresh the page. You should see the search results.
+
+The images from the profiles will not be loaded automatically. For it to run you must upload the files to the cloud on the S3 bucket created for this project.
+
+[Go for S3 page](https://s3.console.aws.amazon.com/s3/buckets?region=us-east-1) and choose the bucket name: `yellow-pages-blings...`(... is number + environment)
+
+![](./S3_Bucket.png)
+
+This is the bucket that was created for me. Open it and, inside of it, create a folder called `public` and upload the images to it.
+
+After this the contact cards will have the images.
 
 
 ## Author

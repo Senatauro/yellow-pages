@@ -8,10 +8,10 @@ import { Amplify } from 'aws-amplify';
 import awsconfig from './aws-exports';
 
 // TO POPULATE THE DB
-//import populateDB from './populateDB';
+import populateDB from './populateDB';
 
 Amplify.configure(awsconfig);
-//populateDB()
+populateDB()
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
