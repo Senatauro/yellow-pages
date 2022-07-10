@@ -64,7 +64,7 @@ export default function YellowPage() {
     }
 
     const contactsToRender = contacts.map(contact => {
-        return <UserCard key={contact.id} name={contact.name} phone={contact.phone} address={contact.address} profilePicture={contact.profilePicture} />
+        return <UserCard key={contact.id} birthday={contact.birthday} name={contact.name} phone={contact.phone} address={contact.address} profilePicture={contact.profilePicture} />
     })
 
     return (

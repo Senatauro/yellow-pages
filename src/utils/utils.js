@@ -8,7 +8,7 @@ const ERROR_MESSAGES = {
 function parseSearchInfo(searchInfo) {
 
   // This RegEx will see if there's any special character in the searchInfo. Throw an error if there is
-  const hasSpecialChar = searchInfo.match(/[^a-zA-Z0-9 ]/g);
+  const hasSpecialChar = searchInfo.match(/[^a-zA-Z0-9\-\s\(\)]/g);
   if (hasSpecialChar) {
     throw ERROR_MESSAGES.ERROR_PARSE[0];
   }
@@ -24,15 +24,13 @@ function parseSearchInfo(searchInfo) {
 
   // This RegEx is based on the EUA phone number format, so it will only get numbers of the EUA without the country code
   const phone = searchInfo.match(
-    /((\([0-9]{3}\)|[0-9]{3})\s?(([0-9]{1,3}-[0-9]{1,5})|([0-9]{1,7}))?)/g
+    /((\([0-9]{3}\)|[0-9]{3})\s?(([0-9]{3}-[0-9]{1,5})|([0-9]{1,7}))?)/g
   );
-
-  //console.timeEnd("search");
 
   return {
     name: name ? name[0].trim().toLocaleLowerCase() : "",
     age: age ? age[0].trim() : "",
-    phone: phone ? phone[0].trim() : "",
+    phone: phone ? phone[0].replace(" ", "").replace("-", "").replace("(", "").replace(")","") : "",
   };
 }
 
@@ -85,5 +83,12 @@ async function filteredSearch(name, age, phone) {
     return contacts;
 }
 
+function getAge(birthday) {
+  return (new Date().getFullYear() - new Date(birthday).getFullYear());
+}
 
-export { parseSearchInfo, defaultSearch, filteredSearch };
+function getFormatedPhone(phone) {
+  return `(${phone.substring(0, 3)}) ${phone.substring(3, 6)}-${phone.substring(6, 10)}`;
+}
+
+export { parseSearchInfo, defaultSearch, filteredSearch, getAge, getFormatedPhone };

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Storage } from "aws-amplify"
+import { getAge, getFormatedPhone } from "../../utils/utils"
 
 import "./UserCard.css"
 
@@ -55,8 +56,9 @@ export default function UserCard(props) {
             }
             <div className="user-card-info">
                 <div className="user-card-name border-botton">I'm <span className="text-accent">{capitalizeName(props.name)}</span></div>
+                <div className="user-card-age border-botton">I'm <span className="text-accent">{getAge(props.birthday)}</span> years old</div>
                 <div className="user-card-address border-botton">My address: <span className="text-accent">{props.address}</span></div>
-                <div className="user-card-phone border-botton">My phone: <span className="text-accent">{props.phone}</span></div>
+                <div className="user-card-phone border-botton">My phone: <span className="text-accent">{getFormatedPhone(props.phone)}</span></div>
             </div>
         </div>
     )
