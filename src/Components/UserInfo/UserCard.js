@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react"
-import { Storage } from "aws-amplify"
+import { Cache, Storage } from "aws-amplify"
 import { getAge, getFormatedPhone } from "../../utils/utils"
 
 import "./UserCard.css"
 
 export default function UserCard(props) {
-    const [image, setImage] = useState("")
+    const [image, setImage] = useState(() => {
+        return Cache.getItem(props.profilePicture.key, {
+            callback: () => {
+            console.log("Image loaded")
+            return props.profilePicture.key
+        }})
+    })
     const [randomColor, setRandomColor] = useState(Math.floor(Math.random() * 16777215).toString(16))
 
     // The first time this component is rendered, we want to get the user's image
@@ -22,6 +28,10 @@ export default function UserCard(props) {
                     // if the url is valid, set the image
                     if (response.status === 200) {
                         setImage(result)
+                        
+                        // The cache expires in 1 hour
+                        const expiration = new Date().getTime() + 3600000
+                        Cache.setItem(props.profilePicture.key, result, { expires: expiration })
                     }
                     else {
                         setRandomColor("#" + Math.floor(Math.random() * 16777215).toString(16))
